@@ -10,7 +10,9 @@
     }
 
     
-    async function getTrainLocation() {
+    async function getTrainLocation(lineCode) {
+        //A 공항선, H 하코자키선, N 나나쿠마선
+        
         var url = 'https://unkou.subway.city.fukuoka.lg.jp/unkou/PC_Kuhako.png';
         var image = await get_pixels(url);
 
@@ -31,7 +33,8 @@
             }
         }
 
-        var stas = [
+        var stas = [];
+        stas.A = [
             //공항선
             {s: '姪浜', s_k: '메이노하마', u: [64, 357], d: [64, 240]},
             {s: '室見', s_k: '무로미', u: [124, 357], d: [124, 240]},
@@ -50,7 +53,7 @@
 
         var result = [];
         var result = [];
-        stas.forEach((e, i) => {
+        stas[lineCode].forEach((e, i) => {
             result[i] = {
                 stn: {
                     ja: e.s,
@@ -60,7 +63,7 @@
                 down: []
             }
         });
-        stas.forEach((e, i) => {
+        stas[lineCode].forEach((e, i) => {
             if (isTrain(map[e.u[1]][e.u[0]])) {
                 if (result[i]['up'] == undefined) result[i]['up'] = [];
                 result[i]['up'].push({
@@ -96,7 +99,7 @@
         
         return result;
     }
-    getTrainLocation();
+    getTrainLocation('A');
 
     
     function isTrain(p) {
