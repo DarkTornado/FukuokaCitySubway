@@ -136,5 +136,5 @@
         return false;
     }
 
-    module.export = getTrainLocation;
+    module.exports = getTrainLocation;
 })();
