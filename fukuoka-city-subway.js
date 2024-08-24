@@ -81,7 +81,6 @@
         ];
 
         var result = [];
-        var result = [];
         stas[lineCode].forEach((e, i) => {
             result[i] = {
                 stn: {
