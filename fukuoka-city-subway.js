@@ -80,6 +80,8 @@
             {s: '博多', s_k: '하카타', u: [923, 320], d: [923, 205]}
         ];
 
+        if (!stas[lineCode]) return [];
+
         var result = [];
         stas[lineCode].forEach((e, i) => {
             result[i] = {
