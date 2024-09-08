@@ -13,17 +13,17 @@
     async function getTrainLocation(lineCode) {
         //A 공항선, H 하코자키선, N 나나쿠마선
         
-        var url = 'https://unkou.subway.city.fukuoka.lg.jp/unkou/PC_Kuhako.png';
+        let url = 'https://unkou.subway.city.fukuoka.lg.jp/unkou/PC_Kuhako.png';
         if (lineCode == 'N') url = 'https://unkou.subway.city.fukuoka.lg.jp/unkou/PC_Nanakuma.png';
-        var image = await get_pixels(url);
+        const image = await get_pixels(url);
 
-        var map = [];
-        var i = 0;
-        for (var n = 0 ; n < image.shape[1]; n++) {
+        const map = [];
+        let i = 0;
+        for (let n = 0 ; n < image.shape[1]; n++) {
             map[n] = [];
         }
-        for (var n = 0 ; n < image.shape[1]; n++) {
-            for (var m = 0 ; m < image.shape[0]; m++) {
+        for (let n = 0 ; n < image.shape[1]; n++) {
+            for (let m = 0 ; m < image.shape[0]; m++) {
                 map[n][m] = {
                     a: image.data[i + 3],
                     r: image.data[i],
@@ -34,7 +34,7 @@
             }
         }
 
-        var stas = [];
+        const stas = [];
         stas.A = [ //공항선
             {s: '姪浜', s_k: '메이노하마', u: [64, 357], d: [64, 240]},
             {s: '室見', s_k: '무로미', u: [124, 357], d: [124, 240]},
@@ -82,7 +82,7 @@
 
         if (!stas[lineCode]) return [];
 
-        var result = [];
+        const result = [];
         stas[lineCode].forEach((e, i) => {
             result[i] = {
                 stn: {
