@@ -82,6 +82,12 @@
 
         if (!stas[lineCode]) return [];
 
+        const diff = {
+            A: 64,
+            H: 64,
+            N: 56
+        };
+
         const result = [];
         stas[lineCode].forEach((e, i) => {
             result[i] = {
@@ -101,7 +107,7 @@
                     type: 0
                 });
             }
-            if (isTrain(map[e.u[1]][e.u[0] + 32])) {
+            if (isTrain(map[e.u[1]][e.u[0] + diff[lineCode]])) {
                 if (result[i]['up'] == undefined) result[i]['up'] = [];
                 result[i]['up'].push({
                     sts: '접근',
@@ -116,7 +122,7 @@
                     type: 0
                 });
             }
-            if (isTrain(map[e.d[1]][e.d[0] - 32])) {
+            if (isTrain(map[e.d[1]][e.d[0] - diff[lineCode]])) {
                 if (result[i]['dn'] == undefined) result[i]['dn'] = [];
                 result[i]['dn'].push({
                     sts: '접근',
